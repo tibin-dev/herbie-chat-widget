@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+    <title>BotMan Widget</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="test.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .chat-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+        .input-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            background-color: #fff;
+            border-top: 1px solid #ccc;
+        }
+        input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: none; 
+            outline: none;
+        }
+        .send-button {
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .send-button img {
+            width: 20px;
+            height: 20px;
+        }
+        .chat-message-herbie {
+            background-color: #f4f4f4;
+            width: fit-content;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 5px;
+            align-self: flex-start;
+        }
+        .chat-message-user {
+            background-color: #f7c266;
+            width: fit-content;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 5px;
+            align-self: flex-end;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-body" id="chat-body">
+
+    </div>
+    <div class="input-container">
+        <input type="text" id="input-holder" placeholder="Type a message..."/>
+        <div class="send-button" id="send-btn">
+            <img src="send.png">
+        </div>
+    </div>
+</body>
+<script>
+    let dummy_message = [{
+        message: "Hey How are you"
+    }, {
+        message: "This is herbie"
+    }];
+    let user_message = [{
+        message: "What is special offer"
+    }];
+    dummy_message.map((data) => {
+        document.getElementById("chat-body").innerHTML += `<div class="chat-message-herbie">${data.message}</div>`;
+    });
+    document.getElementById("send-btn").addEventListener("click", () => {
+        let input_data = document.getElementById("input-holder").value;
+        document.getElementById("chat-body").innerHTML += `<div class="chat-message-user">${input_data}</div>`;
+        document.getElementById("input-holder").value = ""; // Clear the input field after sending a message
+    });
+</script>
+</html>
+
